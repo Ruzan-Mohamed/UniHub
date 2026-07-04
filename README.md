@@ -11,7 +11,7 @@ UniHub is a web-based Student Resource Hub where students can register, log in, 
 - MySQL
 
 ## Team
-- A.J. Najib (ITT/2024/071)
+- Lakshan A.H.I.U. (ITT/2024/058)
 - Ruzan Mohamed (ITT/2024/093)
 
 ## Module
