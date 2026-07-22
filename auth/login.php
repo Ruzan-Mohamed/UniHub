@@ -8,19 +8,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.2.0/css/line.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/auth.css">
 </head>
 <body>
-    <nav>
-        <div class="nav-brand">
-            <img src="../images/logo/logo.png" alt="UniHub Logo">
-            <h1>UniHub</h1>
+    <nav class="navbar navbar-expand-lg">
+        <div class="nav-container">
+            <a href="../index.php" class="navbar-brand">
+                <img src="../images/logo/logo.png" alt="UniHub Logo"> UniHub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse.navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="#" class="nav-link active">Sign In </a></li>
+                    <li class="nav-item"><a href="./register.php" class="nav-link">Register</a></li>
+                </ul>
+            </div>
         </div>
-        <ul>
-            <li><a href="#" class="active">Sign In </a></li>
-            <li><a href="./auth/register.php">Register</a></li>
-        </ul>
     </nav>
 
     <section class="login-form">
@@ -74,5 +82,6 @@
     <footer>
         <p>&copy; 2026 UniHub University Resource Management. All Rights Reserved</p>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
