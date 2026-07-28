@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage university courses, credits, rooms, and enrolled students in the UniHub Admin portal.">
+    <title>Manage Courses - UniHub Admin</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="dashboard-wrapper">
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header d-flex align-items-center justify-content-between">
+                <a href="../index.html" class="d-flex align-items-center text-white text-decoration-none">
+                    <i class="bi bi-shield-lock-fill fs-3 text-primary me-2"></i>
+                    <span class="fs-4 fw-bold">UniHub Admin</span>
+                </a>
+                <button class="btn btn-link text-white d-lg-none p-0" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-label="Close sidebar">
+                    <i class="bi bi-x fs-2"></i>
+                </button>
+            </div>
+            
+            <div class="nav flex-column nav-pills mt-4 flex-grow-1">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="bi bi-speedometer2"></i>
+                    Dashboard
+                </a>
+                <a href="students.html" class="nav-link">
+                    <i class="bi bi-people-fill"></i>
+                    Manage Students
+                </a>
+                <a href="courses.html" class="nav-link active">
+                    <i class="bi bi-journal-check"></i>
+                    Manage Courses
+                </a>
+                <a href="announcements.html" class="nav-link">
+                    <i class="bi bi-megaphone-fill"></i>
+                    Announcements
+                </a>
+            </div>
+
+            <div class="mt-auto p-3 border-top border-white border-opacity-10">
+                <div class="d-flex align-items-center gap-2 mb-3 px-2">
+                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; font-weight: 600;">
+                        AD
+                    </div>
+                    <div>
+                        <h6 class="mb-0 text-white small">System Administrator</h6>
+                        <span class="text-white-50 small" style="font-size: 0.75rem;">Staff Root ID</span>
+                    </div>
+                </div>
+                <a href="login.html" class="btn btn-outline-danger btn-sm w-100 py-2">
+                    <i class="bi bi-box-arrow-left me-1"></i> Sign Out
+                </a>
+            </div>
+        </aside>
+
+
+        <main class="main-content">
+
+            <nav class="navbar navbar-expand navbar-light top-navbar sticky-top">
+                <div class="container-fluid p-0">
+                    <button class="btn btn-link text-dark d-lg-none me-3 p-0" id="sidebarToggle" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-expanded="false" aria-controls="sidebar">
+                        <i class="bi bi-list fs-2"></i>
+                    </button>
+
+                    <h4 class="page-title mb-0 d-none d-sm-block">Manage Course Modules</h4>
+
+
+                    <div class="d-flex align-items-center gap-3 ms-auto">
+                        <button class="btn btn-primary btn-sm btn-animate py-2 px-3 fw-medium" data-bs-toggle="modal" data-bs-target="#addCourseModal">
+                            <i class="bi bi-journal-plus me-1"></i> Add Course
+                        </button>
+                        <div class="dropdown">
+                            <button class="btn btn-light d-flex align-items-center gap-2 p-1.5 rounded-pill" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; font-size: 0.85rem; font-weight: 600;">
+                                    AD
+                                </div>
+                                <span class="d-none d-sm-inline text-dark small fw-medium pe-2">Admin Root</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="profileDropdown">
+                                <li><a class="dropdown-item py-2" href="../student/login.html"><i class="bi bi-person-workspace me-2 text-muted"></i> Student Portal</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item py-2 text-danger" href="login.html"><i class="bi bi-box-arrow-left me-2"></i> Log Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+
+            <div class="container-fluid p-4">
+
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card card-glass border-0 p-3">
+                            <span class="text-muted small fw-medium d-block mb-1">Total Active Courses</span>
+                            <h3 class="fw-bold mb-0 text-primary">48 Modules</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card card-glass border-0 p-3">
+                            <span class="text-muted small fw-medium d-block mb-1">Computer Science</span>
+                            <h3 class="fw-bold mb-0 text-success">20 Modules</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card card-glass border-0 p-3">
+                            <span class="text-muted small fw-medium d-block mb-1">Business Admin</span>
+                            <h3 class="fw-bold mb-0 text-warning">16 Modules</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card card-glass border-0 p-3">
+                            <span class="text-muted small fw-medium d-block mb-1">Humanities</span>
+                            <h3 class="fw-bold mb-0 text-secondary">12 Modules</h3>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card card-glass border-0 p-3 mb-4">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-md-5">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="bi bi-search text-muted"></i></span>
+                                <input type="text" class="form-control bg-light border-start-0 ps-0" placeholder="Search by course code, name or lecturer...">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <select class="form-select bg-light" aria-label="Filter by department">
+                                <option value="" selected>All Departments</option>
+                                <option value="cs">Computer Science</option>
+                                <option value="ba">Business Administration</option>
+                                <option value="hu">Humanities</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-primary w-100 btn-animate fw-medium">Apply Filter</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card card-glass border-0 p-4">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead>
+                                <tr class="text-muted small">
+                                    <th>Code</th>
+                                    <th>Course Title</th>
+                                    <th>Credits</th>
+                                    <th>Department</th>
+                                    <th>Lecturer</th>
+                                    <th>Lecture Room</th>
+                                    <th>Enrolled</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="badge bg-primary">CS 301</span></td>
+                                    <td><strong class="text-dark">Advanced Web Application Development</strong></td>
+                                    <td>4 Credits</td>
+                                    <td>Computer Science</td>
+                                    <td>Prof. Arthur P.</td>
+                                    <td>L-Block, Rm 402</td>
+                                    <td><span class="fw-semibold text-primary">45 Students</span></td>
+                                    <td class="text-end">
+                                        <button class="btn btn-outline-primary btn-sm btn-animate me-1" data-bs-toggle="modal" data-bs-target="#editCourseModal"><i class="bi bi-pencil"></i></button>
+                                        <button class="btn btn-outline-danger btn-sm btn-animate"><i class="bi bi-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge bg-success">CS 302</span></td>
+                                    <td><strong class="text-dark">Database Management Systems</strong></td>
+                                    <td>3 Credits</td>
+                                    <td>Computer Science</td>
+                                    <td>Dr. Evelyn Harris</td>
+                                    <td>Lab-Block 1</td>
+                                    <td><span class="fw-semibold text-primary">38 Students</span></td>
+                                    <td class="text-end">
+                                        <button class="btn btn-outline-primary btn-sm btn-animate me-1" data-bs-toggle="modal" data-bs-target="#editCourseModal"><i class="bi bi-pencil"></i></button>
+                                        <button class="btn btn-outline-danger btn-sm btn-animate"><i class="bi bi-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge bg-warning text-dark">CS 303</span></td>
+                                    <td><strong class="text-dark">Software Engineering Principles</strong></td>
+                                    <td>3 Credits</td>
+                                    <td>Computer Science</td>
+                                    <td>Prof. Merlin A.</td>
+                                    <td>L-Block, Rm 101</td>
+                                    <td><span class="fw-semibold text-primary">52 Students</span></td>
+                                    <td class="text-end">
+                                        <button class="btn btn-outline-primary btn-sm btn-animate me-1" data-bs-toggle="modal" data-bs-target="#editCourseModal"><i class="bi bi-pencil"></i></button>
+                                        <button class="btn btn-outline-danger btn-sm btn-animate"><i class="bi bi-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge bg-secondary">BA 205</span></td>
+                                    <td><strong class="text-dark">Principles of Management</strong></td>
+                                    <td>3 Credits</td>
+                                    <td>Business Admin</td>
+                                    <td>Dr. Lancelot</td>
+                                    <td>B-Block, Rm 12</td>
+                                    <td><span class="fw-semibold text-primary">64 Students</span></td>
+                                    <td class="text-end">
+                                        <button class="btn btn-outline-primary btn-sm btn-animate me-1" data-bs-toggle="modal" data-bs-target="#editCourseModal"><i class="bi bi-pencil"></i></button>
+                                        <button class="btn btn-outline-danger btn-sm btn-animate"><i class="bi bi-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge bg-secondary">HU 102</span></td>
+                                    <td><strong class="text-dark">History of Literature</strong></td>
+                                    <td>2 Credits</td>
+                                    <td>Humanities</td>
+                                    <td>Prof. Guinevere</td>
+                                    <td>H-Block, Rm 5</td>
+                                    <td><span class="fw-semibold text-primary">29 Students</span></td>
+                                    <td class="text-end">
+                                        <button class="btn btn-outline-primary btn-sm btn-animate me-1" data-bs-toggle="modal" data-bs-target="#editCourseModal"><i class="bi bi-pencil"></i></button>
+                                        <button class="btn btn-outline-danger btn-sm btn-animate"><i class="bi bi-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Course Modal -->
+    <div class="modal fade" id="addCourseModal" tabindex="-1" aria-labelledby="addCourseModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content card-glass border-0 shadow-lg" style="border-radius: 16px;">
+                <div class="modal-header border-bottom p-4">
+                    <h5 class="modal-title fw-bold text-dark" id="addCourseModalLabel">Add Course Module</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="#" method="POST">
+                    <div class="modal-body p-4">
+                        <div class="row g-2 mb-3">
+                            <div class="col-md-4">
+                                <label for="courseCode" class="form-label small fw-semibold">Course Code</label>
+                                <input type="text" class="form-control bg-light" id="courseCode" placeholder="e.g. CS 304" required>
+                            </div>
+                            <div class="col-md-8">
+                                <label for="courseTitle" class="form-label small fw-semibold">Course Title</label>
+                                <input type="text" class="form-control bg-light" id="courseTitle" placeholder="e.g. Mobile Computing" required>
+                            </div>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-md-6">
+                                <label for="courseCredits" class="form-label small fw-semibold">Credit Value</label>
+                                <select class="form-select bg-light" id="courseCredits">
+                                    <option value="4">4 Credits</option>
+                                    <option value="3" selected>3 Credits</option>
+                                    <option value="2">2 Credits</option>
+                                    <option value="1">1 Credit</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="courseDep" class="form-label small fw-semibold">Department</label>
+                                <select class="form-select bg-light" id="courseDep">
+                                    <option value="cs" selected>Computer Science</option>
+                                    <option value="ba">Business Administration</option>
+                                    <option value="hu">Humanities</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="courseLecturer" class="form-label small fw-semibold">Primary Instructor</label>
+                            <input type="text" class="form-control bg-light" id="courseLecturer" placeholder="e.g. Dr. Arthur Dent" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="courseRoom" class="form-label small fw-semibold">Lecture Room / Venue</label>
+                            <input type="text" class="form-control bg-light" id="courseRoom" placeholder="e.g. L-Block, Rm 205" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top p-3">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary btn-animate fw-semibold">Save Course</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Course -->
+    <div class="modal fade" id="editCourseModal" tabindex="-1" aria-labelledby="editCourseModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content card-glass border-0 shadow-lg" style="border-radius: 16px;">
+                <div class="modal-header border-bottom p-4">
+                    <h5 class="modal-title fw-bold text-dark" id="editCourseModalLabel">Modify Course Module</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="#" method="POST">
+                    <div class="modal-body p-4">
+                        <div class="mb-3">
+                            <label for="editTitle" class="form-label small fw-semibold">Course Title</label>
+                            <input type="text" class="form-control bg-light" id="editTitle" value="Advanced Web Application Development" required>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-md-6">
+                                <label for="editCredits" class="form-label small fw-semibold">Credits</label>
+                                <select class="form-select bg-light" id="editCredits">
+                                    <option value="4" selected>4 Credits</option>
+                                    <option value="3">3 Credits</option>
+                                    <option value="2">2 Credits</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="editRoom" class="form-label small fw-semibold">Lecture Room</label>
+                                <input type="text" class="form-control bg-light" id="editRoom" value="L-Block, Rm 402" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editLecturer" class="form-label small fw-semibold">Primary Lecturer</label>
+                            <input type="text" class="form-control bg-light" id="editLecturer" value="Prof. Arthur Pendragon" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top p-3">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary btn-animate fw-semibold">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

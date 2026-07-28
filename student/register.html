@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register a new student account on UniHub. Provide personal, contact, and academic ID credentials.">
+    <title>Create Your Account - UniHub</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" rel="stylesheet">
+    
+    <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body class="bg-light d-flex flex-column min-height-vh-100" style="min-height: 100vh;">
+
+    
+    <header class="auth-logo-header d-flex justify-content-between align-items-center shadow-sm">
+        <a href="../index.html" class="d-flex align-items-center gap-2 text-decoration-none">
+            <div class="bg-primary text-white rounded-3 p-1.5 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                <i class="bi bi-mortarboard-fill fs-4"></i>
+            </div>
+            <span class="fs-4 fw-bold text-primary" style="letter-spacing: -0.5px;">Uni Hub</span>
+        </a>
+        <div class="d-flex gap-2">
+            <a href="login.html" class="btn btn-light px-4 fw-semibold border" style="border-radius: 6px; background-color: #f3f4f6;">Sign In</a>
+            <a href="register.html" class="btn btn-primary px-4 fw-semibold" style="border-radius: 6px;">Register</a>
+        </div>
+    </header>
+
+    
+    <div class="container mt-5">
+        <div class="stepper-container">
+            <div class="step-node">
+                <div class="step-circle active">1</div>
+                <span class="small fw-bold text-dark mt-1">Account Details</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step-node">
+                <div class="step-circle">2</div>
+                <span class="small fw-semibold text-muted mt-1">Email Verification</span>
+            </div>
+        </div>
+    </div>
+
+    
+    <main class="flex-grow-1 d-flex align-items-center justify-content-center p-3 mb-5">
+        <div class="card card-glass border-0 p-4 shadow-lg" style="max-width: 580px; width: 100%; border-radius: 16px;">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold text-dark mb-1">Create Your Account</h2>
+                <p class="text-muted small">Join your universities collaborative network today</p>
+            </div>
+
+            <form action="dashboard.html" method="GET">
+               
+                <div class="mb-4">
+                    <label class="form-label small fw-bold text-muted text-uppercase" style="letter-spacing: 0.5px;">Account Type</label>
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="account-type-card active">
+                                <i class="bi bi-person-badge fs-3 mb-2 d-block"></i>
+                                <span class="fw-bold text-dark small d-block">Student</span>
+                                <span class="text-muted" style="font-size: 0.65rem; display: block; line-height: 1.2; margin-top: 2px;">Access courses and learning materials</span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="account-type-card">
+                                <i class="bi bi-mortarboard fs-3 mb-2 d-block text-muted"></i>
+                                <span class="fw-bold text-dark small d-block">Faculty</span>
+                                <span class="text-muted" style="font-size: 0.65rem; display: block; line-height: 1.2; margin-top: 2px;">Manage Courses & Publish Content</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="mb-4">
+                    <h5 class="fw-bold text-dark border-bottom pb-2 d-flex align-items-center gap-2" style="font-size: 1.05rem;">
+                        <i class="bi bi-person-fill text-primary"></i> Personal Details
+                    </h5>
+                    <div class="row g-3 mb-3">
+                        <div class="col-6">
+                            <label for="regFirst" class="form-label small fw-semibold text-dark mb-1">First Name :</label>
+                            <input type="text" class="form-control bg-light border-0 py-2" id="regFirst" placeholder="Alwis" required style="border-radius: 6px;">
+                        </div>
+                        <div class="col-6">
+                            <label for="regLast" class="form-label small fw-semibold text-dark mb-1">Last Name :</label>
+                            <input type="text" class="form-control bg-light border-0 py-2" id="regLast" placeholder="Perera" required style="border-radius: 6px;">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex align-items-center mb-1">
+                            <label for="regEmail" class="form-label small fw-semibold text-dark mb-0">University Email :</label>
+                            <span class="required-badge">REQUIRED</span>
+                        </div>
+                        <input type="email" class="form-control bg-light border-0 py-2" id="regEmail" placeholder="itt2024001@tec.rjt.ac.lk" pattern="[a-zA-Z0-9._%+-]+@tec\.rjt\.ac\.lk" title="Please enter a valid university email ending with @tec.rjt.ac.lk" required style="border-radius: 6px;">
+                        <span class="form-text small text-muted" style="font-size: 0.7rem;">Must end with @tec.rjt.ac.lk or authorized domain</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="regID" class="form-label small fw-semibold text-dark mb-1">Student ID Number</label>
+                        <div class="input-group" style="border-radius: 6px; overflow: hidden;">
+                            <span class="input-group-text bg-light border-0"><i class="bi bi-card-text text-muted"></i></span>
+                            <input type="text" class="form-control bg-light border-0 py-2" id="regID" placeholder="ITT/2024/001" required>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="mb-4">
+                    <h5 class="fw-bold text-dark border-bottom pb-2 d-flex align-items-center gap-2" style="font-size: 1.05rem;">
+                        <i class="bi bi-shield-lock-fill text-primary"></i> Account Security
+                    </h5>
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <label for="regPass" class="form-label small fw-semibold text-dark mb-1">Password :</label>
+                            <div class="input-group" style="border-radius: 6px; overflow: hidden;">
+                                <span class="input-group-text bg-light border-0"><i class="bi bi-lock-fill text-muted"></i></span>
+                                <input type="password" class="form-control bg-light border-0 py-2" id="regPass" placeholder="********" required>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label for="regConfirm" class="form-label small fw-semibold text-dark mb-1">Confirm Password :</label>
+                            <div class="input-group" style="border-radius: 6px; overflow: hidden;">
+                                <span class="input-group-text bg-light border-0"><i class="bi bi-lock-fill text-muted"></i></span>
+                                <input type="password" class="form-control bg-light border-0 py-2" id="regConfirm" placeholder="********" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+               
+                <div class="mb-4 p-3 bg-light border rounded-3 d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-3">
+                        <input type="checkbox" class="form-check-input" id="captchaCheck" required style="width: 24px; height: 24px;">
+                        <label class="form-check-label fw-semibold text-dark mb-0" for="captchaCheck" style="font-size: 0.9rem;">I am not a robot</label>
+                    </div>
+                    <div class="text-center">
+                        <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA logo" style="width: 30px; height: 30px;">
+                        <span class="d-block text-muted" style="font-size: 0.55rem; line-height: 1;">reCAPTCHA</span>
+                    </div>
+                </div>
+
+                
+                <div class="mb-4 form-check">
+                    <input type="checkbox" class="form-check-input" id="termsCheck" required style="border-radius: 4px;">
+                    <label class="form-check-label small text-muted fw-semibold" for="termsCheck" style="line-height: 1.4;">
+                        I agree to the <a href="#" class="text-decoration-none" style="color: #2563eb;">Terms of Service</a> and <a href="#" class="text-decoration-none" style="color: #2563eb;">Privacy Policy</a>. I confirm that the information provided is accurate and belongs to me.
+                    </label>
+                </div>
+
+                
+                <button type="submit" class="btn btn-primary w-100 py-2.5 fw-bold d-flex align-items-center justify-content-center gap-2 mb-4" style="border-radius: 6px;">
+                    Continue to Verification <i class="bi bi-arrow-right"></i>
+                </button>
+
+               
+                <div class="text-center small">
+                    <span class="text-muted fw-semibold">Already have an account? </span>
+                    <a href="login.html" class="text-decoration-none fw-bold" style="color: #2563eb;">Sign In</a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    
+    <footer class="text-center py-3 bg-white border-top border-slate-200 mt-auto">
+        <span class="text-dark small fw-semibold" style="font-size: 0.75rem;">&copy; 2026 UniHub University Resource Management. All rights reserved.</span>
+    </footer>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Secure administrative login for UniHub. Authorized personnel access only.">
+    <title>Admin Portal Login - UniHub</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body class="bg-light d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+
+                <div class="card card-glass border-0 p-4 shadow-lg text-center" style="border-radius: 16px;">
+                    <div class="mb-4">
+                        <div class="bg-primary text-white rounded-circle p-3 d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="bi bi-shield-lock-fill fs-3"></i>
+                        </div>
+                        <h3 class="fw-bold text-dark mb-1">UniHub Admin Portal</h3>
+                        <p class="text-muted small">Authorized Administrative & Academic Staff Access Only</p>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <form action="dashboard.html" method="GET" class="text-start">
+                        <div class="mb-3">
+                            <label for="adminEmail" class="form-label small fw-semibold">Staff Identity / Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="bi bi-person-badge text-muted"></i></span>
+                                <input type="email" class="form-control bg-light border-start-0 ps-0" id="adminEmail" placeholder="staff@university.edu" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="adminRole" class="form-label small fw-semibold">Access Level Role</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="bi bi-sliders text-muted"></i></span>
+                                <select class="form-select bg-light border-start-0 ps-0" id="adminRole" required>
+                                    <option value="Admin" selected>System Administrator</option>
+                                    <option value="Staff">Academic Staff / Registrar</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="adminPassword" class="form-label small fw-semibold">Security Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="bi bi-key text-muted"></i></span>
+                                <input type="password" class="form-control bg-light border-start-0 ps-0" id="adminPassword" placeholder="Enter secure key" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 py-2.5 fw-semibold btn-animate fs-6">
+                            Secure Log In <i class="bi bi-shield-check ms-1"></i>
+                        </button>
+                    </form>
+
+                    <div class="mt-4 pt-3 border-top text-center d-flex justify-content-around">
+                        <a href="../student/login.html" class="text-decoration-none small text-muted">
+                            <i class="bi bi-arrow-left me-1"></i> Return to Student Portal
+                        </a>
+                        <a href="../index.html" class="text-decoration-none small text-muted">
+                            <i class="bi bi-house-door me-1"></i> Return to Homepage
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

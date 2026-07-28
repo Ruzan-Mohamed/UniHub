@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View the UniHub Admin Dashboard. Access database status reports, track recent registration logs, and oversee modules.">
+    <title>Admin Dashboard - UniHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="dashboard-wrapper">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header d-flex align-items-center justify-content-between">
+                <a href="../index.html" class="d-flex align-items-center text-white text-decoration-none">
+                    <i class="bi bi-shield-lock-fill fs-3 text-primary me-2"></i>
+                    <span class="fs-4 fw-bold">UniHub Admin</span>
+                </a>
+                <button class="btn btn-link text-white d-lg-none p-0" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-label="Close sidebar">
+                    <i class="bi bi-x fs-2"></i>
+                </button>
+            </div>
+            
+            <div class="nav flex-column nav-pills mt-4 flex-grow-1">
+                <a href="dashboard.html" class="nav-link active">
+                    <i class="bi bi-speedometer2"></i>
+                    Dashboard
+                </a>
+                <a href="students.html" class="nav-link">
+                    <i class="bi bi-people-fill"></i>
+                    Manage Students
+                </a>
+                <a href="courses.html" class="nav-link">
+                    <i class="bi bi-journal-check"></i>
+                    Manage Courses
+                </a>
+                <a href="announcements.html" class="nav-link">
+                    <i class="bi bi-megaphone-fill"></i>
+                    Announcements
+                </a>
+            </div>
+
+            <div class="mt-auto p-3 border-top border-white border-opacity-10">
+                <div class="d-flex align-items-center gap-2 mb-3 px-2">
+                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; font-weight: 600;">
+                        AD
+                    </div>
+                    <div>
+                        <h6 class="mb-0 text-white small">System Administrator</h6>
+                        <span class="text-white-50 small" style="font-size: 0.75rem;">Staff Root ID</span>
+                    </div>
+                </div>
+                <a href="login.html" class="btn btn-outline-danger btn-sm w-100 py-2">
+                    <i class="bi bi-box-arrow-left me-1"></i> Sign Out
+                </a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <nav class="navbar navbar-expand navbar-light top-navbar sticky-top">
+                <div class="container-fluid p-0">
+                    <button class="btn btn-link text-dark d-lg-none me-3 p-0" id="sidebarToggle" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-expanded="false" aria-controls="sidebar">
+                        <i class="bi bi-list fs-2"></i>
+                    </button>
+
+                    <div class="d-none d-md-flex align-items-center gap-2 text-muted small">
+                        <span class="badge bg-success-subtle text-success border border-success border-opacity-25 py-1.5 px-3 rounded-pill">
+                            <i class="bi bi-database me-1"></i> MongoDB: Connected
+                        </span>
+                        <span class="badge bg-primary-subtle text-primary border border-primary border-opacity-25 py-1.5 px-3 rounded-pill">
+                            <i class="bi bi-cpu me-1"></i> Servers: Operational
+                        </span>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-3 ms-auto">
+                        <a href="announcements.html" class="btn btn-primary btn-sm btn-animate py-2 px-3 fw-medium d-none d-sm-inline-block">
+                            <i class="bi bi-plus-lg me-1"></i> Post Announcement
+                        </a>
+                        <div class="dropdown">
+                            <button class="btn btn-light d-flex align-items-center gap-2 p-1.5 rounded-pill" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; font-size: 0.85rem; font-weight: 600;">
+                                    AD
+                                </div>
+                                <span class="d-none d-sm-inline text-dark small fw-medium pe-2">Admin Root</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="profileDropdown">
+                                <li><a class="dropdown-item py-2" href="../student/login.html"><i class="bi bi-person-workspace me-2 text-muted"></i> Student Portal</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item py-2 text-danger" href="login.html"><i class="bi bi-box-arrow-left me-2"></i> Log Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+
+            <div class="container-fluid p-4">
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="fw-bold mb-0">System Control Panel</h3>
+                    <span class="text-muted small">Local time: 2026-07-27</span>
+                </div>
+
+
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card card-glass border-0 p-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="text-muted small fw-medium">Total Registered Students</span>
+                                <div class="bg-primary-subtle text-primary p-2 rounded-3"><i class="bi bi-people fs-5"></i></div>
+                            </div>
+                            <h3 class="fw-bold mb-1">1,248</h3>
+                            <span class="text-success small fw-medium"><i class="bi bi-arrow-up"></i> +14% this semester</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card card-glass border-0 p-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="text-muted small fw-medium">Active Courses</span>
+                                <div class="bg-success-subtle text-success p-2 rounded-3"><i class="bi bi-journals fs-5"></i></div>
+                            </div>
+                            <h3 class="fw-bold mb-1">48</h3>
+                            <span class="text-muted small fw-medium">4 departments</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card card-glass border-0 p-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="text-muted small fw-medium">Announcements Released</span>
+                                <div class="bg-warning-subtle text-warning p-2 rounded-3"><i class="bi bi-megaphone fs-5"></i></div>
+                            </div>
+                            <h3 class="fw-bold mb-1">14</h3>
+                            <span class="text-success small fw-medium">3 active today</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card card-glass border-0 p-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="text-muted small fw-medium">Total Database Size</span>
+                                <div class="bg-danger-subtle text-danger p-2 rounded-3"><i class="bi bi-hdd-network fs-5"></i></div>
+                            </div>
+                            <h3 class="fw-bold mb-1">1.2 GB</h3>
+                            <span class="text-muted small fw-medium">MongoDB replica active</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row g-4">
+
+                    <div class="col-lg-7">
+                        <div class="card card-glass border-0 p-4 h-100">
+                            <h5 class="fw-bold text-dark mb-4"><i class="bi bi-activity me-2 text-primary"></i>System Resource Monitoring</h5>
+                            
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="small fw-semibold text-muted">Web Application Server Load</span>
+                                    <span class="small fw-bold text-success">22% Capacity</span>
+                                </div>
+                                <div class="progress" style="height: 10px; border-radius: 6px;">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 22%;" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="small fw-semibold text-muted">Database Server RAM Usage (MongoDB Compass Pool)</span>
+                                    <span class="small fw-bold text-primary">54% RAM</span>
+                                </div>
+                                <div class="progress" style="height: 10px; border-radius: 6px;">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 54%;" aria-valuenow="54" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="small fw-semibold text-muted">File Attachment Disk Space (C:\xampp\htdocs\unihub)</span>
+                                    <span class="small fw-bold text-warning">78% Full</span>
+                                </div>
+                                <div class="progress" style="height: 10px; border-radius: 6px;">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 78%;" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <h6 class="fw-bold mb-3">Recent Student Registrations</h6>
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle mb-0 small">
+                                    <thead>
+                                        <tr class="text-muted">
+                                            <th>Registration ID</th>
+                                            <th>Full Name</th>
+                                            <th>Email</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="fw-bold">STD/2026/089</td>
+                                            <td>John Doe</td>
+                                            <td>john.doe@university.edu</td>
+                                            <td><span class="badge badge-soft-success">Verified</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">STD/2026/090</td>
+                                            <td>Alice Vance</td>
+                                            <td>alice.v@university.edu</td>
+                                            <td><span class="badge badge-soft-success">Verified</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">STD/2026/091</td>
+                                            <td>Bob Miller</td>
+                                            <td>bob.m@university.edu</td>
+                                            <td><span class="badge badge-soft-warning">Pending Doc</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-5">
+                        <div class="card card-glass border-0 p-4 h-100">
+                            <h5 class="fw-bold text-dark mb-4"><i class="bi bi-clock-history me-2 text-primary"></i>System Audit Timeline</h5>
+                            
+                            <div class="feed-item">
+                                <span class="text-muted small d-block mb-1">July 27, 2026 01:22 AM by Registrar Office</span>
+                                <h6 class="mb-0 fw-semibold text-dark">Timetable Release Approved</h6>
+                                <p class="text-muted small mb-0">Official mid-semester timetable release uploaded to student dashboards.</p>
+                            </div>
+                            
+                            <div class="feed-item" style="border-left-color: var(--bs-warning);">
+                                <span class="text-muted small d-block mb-1">July 26, 2026 11:45 PM by Admin Sys</span>
+                                <h6 class="mb-0 fw-semibold text-dark">Database Cache Flushed</h6>
+                                <p class="text-muted small mb-0">Completed periodic MongoDB index compression and performance optimization scan.</p>
+                            </div>
+
+                            <div class="feed-item" style="border-left-color: var(--bs-success);">
+                                <span class="text-muted small d-block mb-1">July 26, 2026 09:12 PM by Prof. Arthur P.</span>
+                                <h6 class="mb-0 fw-semibold text-dark">Course "CS 301" Updated</h6>
+                                <p class="text-muted small mb-0">Uploaded assignment description Web Application Project Part 1.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
