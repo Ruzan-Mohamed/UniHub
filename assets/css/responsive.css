@@ -1,36 +1,29 @@
 @media (max-width: 1024px) {
 
     .sidebar {
-        width: 84px;
+        width: 280px;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
     }
 
-    .sidebar .nav-link {
-        justify-content: center;
-        margin: 0.2rem 0.5rem;
-        padding: 0.75rem 0.5rem;
-    }
-
-    .sidebar .nav-link span,
-    .sidebar-signout a span {
-        display: none;
-    }
-
-    .sidebar-signout a {
-        justify-content: center;
-        padding: 0.75rem 0.5rem;
+    .sidebar.open {
+        transform: translateX(0);
     }
 
     .top-navbar {
         padding: 0 1.25rem;
     }
 
-    
     .auth-blue-panel,
     .auth-form-panel {
         padding: 2rem;
     }
 
-    
     .stepper-container {
         gap: 1rem;
     }
@@ -39,7 +32,6 @@
         width: 48px;
     }
 
-   
     .stat-card {
         padding: 1.25rem;
     }
@@ -53,6 +45,45 @@
     }
 }
 
+.sidebar-toggle-btn {
+    display: none;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.sidebar-toggle-btn:hover {
+    background-color: #f1f5f9;
+}
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.5);
+    z-index: 900;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.sidebar-overlay.open {
+    display: block;
+    opacity: 1;
+}
+
+@media (max-width: 1024px) {
+    .sidebar-toggle-btn {
+        display: inline-flex;
+    }
+}
 
 @media (max-width: 640px) {
 
@@ -60,22 +91,9 @@
         flex-direction: column;
     }
 
-    
     .sidebar {
-        width: 100%;
-        height: auto;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 1000;
-        transform: translateX(-100%);
-        flex-direction: column;
-    }
-
-    .sidebar.open {
-        transform: translateX(0);
+        width: 85%;
+        max-width: 300px;
     }
 
     .sidebar .nav-link {
@@ -113,7 +131,6 @@
         order: 3;
     }
 
-
     .stat-card {
         padding: 1rem;
     }
@@ -128,14 +145,12 @@
         font-size: 1.05rem;
     }
 
-    
     .action-button-card {
         padding: 1rem;
         flex-direction: row;
         flex-wrap: wrap;
     }
 
-    
     .resource-card {
         padding: 1rem;
     }
@@ -145,7 +160,6 @@
         height: 32px;
     }
 
-    
     .notice-sidebar-card {
         padding: 1rem;
     }
@@ -154,7 +168,6 @@
         padding: 0.85rem;
     }
 
-   
     .auth-logo-header {
         padding: 1rem;
     }
@@ -164,7 +177,6 @@
         border-radius: var(--radius-md);
     }
 
-    
     .auth-blue-panel {
         padding: 2rem 1.5rem;
         text-align: center;
@@ -179,7 +191,6 @@
         width: 100%;
     }
 
-    
     .stepper-container {
         gap: 0.5rem;
         flex-wrap: wrap;
@@ -196,7 +207,6 @@
         margin-bottom: 15px;
     }
 
-    
     .account-type-card {
         padding: 1rem;
     }
@@ -205,7 +215,6 @@
         font-size: 1.25rem;
     }
 
-    
     .drag-drop-zone {
         padding: 2rem 1rem;
     }
@@ -222,7 +231,6 @@
         font-size: 0.6rem;
     }
 }
-
 
 @media (max-width: 380px) {
     .stat-card .stat-value {
