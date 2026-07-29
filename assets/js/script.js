@@ -618,4 +618,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
