@@ -1,5 +1,240 @@
-@media (max-width: 767px) {
-  .sidebar {
-    transform: translateX(-100%);
-  }
+@media (max-width: 1024px) {
+
+    .sidebar {
+        width: 84px;
+    }
+
+    .sidebar .nav-link {
+        justify-content: center;
+        margin: 0.2rem 0.5rem;
+        padding: 0.75rem 0.5rem;
+    }
+
+    .sidebar .nav-link span,
+    .sidebar-signout a span {
+        display: none;
+    }
+
+    .sidebar-signout a {
+        justify-content: center;
+        padding: 0.75rem 0.5rem;
+    }
+
+    .top-navbar {
+        padding: 0 1.25rem;
+    }
+
+    
+    .auth-blue-panel,
+    .auth-form-panel {
+        padding: 2rem;
+    }
+
+    
+    .stepper-container {
+        gap: 1rem;
+    }
+
+    .step-line {
+        width: 48px;
+    }
+
+   
+    .stat-card {
+        padding: 1.25rem;
+    }
+
+    .stat-card .stat-value {
+        font-size: 1.75rem;
+    }
+
+    .thumbnail-preview-box {
+        height: 150px;
+    }
+}
+
+
+@media (max-width: 640px) {
+
+    .dashboard-wrapper {
+        flex-direction: column;
+    }
+
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1000;
+        transform: translateX(-100%);
+        flex-direction: column;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar .nav-link {
+        justify-content: flex-start;
+        margin: 0.2rem 1rem;
+        padding: 0.75rem 1.25rem;
+    }
+
+    .sidebar .nav-link span,
+    .sidebar-signout a span {
+        display: inline;
+    }
+
+    .sidebar-signout a {
+        justify-content: flex-start;
+        padding: 0.75rem 1.25rem;
+    }
+
+    .main-content {
+        height: auto;
+        min-height: 100vh;
+        width: 100%;
+    }
+
+    .top-navbar {
+        height: auto;
+        min-height: 60px;
+        padding: 0.75rem 1rem;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .search-input-group {
+        width: 100%;
+        order: 3;
+    }
+
+
+    .stat-card {
+        padding: 1rem;
+    }
+
+    .stat-card .stat-value {
+        font-size: 1.5rem;
+    }
+
+    .stat-icon-wrapper {
+        width: 40px;
+        height: 40px;
+        font-size: 1.05rem;
+    }
+
+    
+    .action-button-card {
+        padding: 1rem;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    
+    .resource-card {
+        padding: 1rem;
+    }
+
+    .resource-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    
+    .notice-sidebar-card {
+        padding: 1rem;
+    }
+
+    .notice-item-widget {
+        padding: 0.85rem;
+    }
+
+   
+    .auth-logo-header {
+        padding: 1rem;
+    }
+
+    .auth-split-card {
+        max-width: 100%;
+        border-radius: var(--radius-md);
+    }
+
+    
+    .auth-blue-panel {
+        padding: 2rem 1.5rem;
+        text-align: center;
+        align-items: center;
+    }
+
+    .auth-form-panel {
+        padding: 2rem 1.5rem;
+    }
+
+    .auth-btn-google {
+        width: 100%;
+    }
+
+    
+    .stepper-container {
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .step-circle {
+        width: 26px;
+        height: 26px;
+        font-size: 0.75rem;
+    }
+
+    .step-line {
+        width: 28px;
+        margin-bottom: 15px;
+    }
+
+    
+    .account-type-card {
+        padding: 1rem;
+    }
+
+    .account-type-card i {
+        font-size: 1.25rem;
+    }
+
+    
+    .drag-drop-zone {
+        padding: 2rem 1rem;
+    }
+
+    .drag-drop-icon {
+        font-size: 2rem;
+    }
+
+    .thumbnail-preview-box {
+        height: 120px;
+    }
+
+    .required-badge {
+        font-size: 0.6rem;
+    }
+}
+
+
+@media (max-width: 380px) {
+    .stat-card .stat-value {
+        font-size: 1.35rem;
+    }
+
+    .step-line {
+        width: 18px;
+    }
+
+    .auth-blue-panel,
+    .auth-form-panel {
+        padding: 1.5rem 1rem;
+    }
 }
