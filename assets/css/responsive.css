@@ -1,5 +1,39 @@
-@media (max-width: 1024px) {
+/* =========================================================
+   RESPONSIVE DESIGN - UniHub
+   Breakpoints: 1200px, 1024px, 768px, 640px, 480px, 380px
+   Note: Main color scheme preserved from style.css
+========================================================= */
 
+/* Extra Large Tablets and Small Laptops */
+@media (max-width: 1200px) {
+    .top-navbar {
+        padding: 0 1.5rem;
+    }
+
+    .main-content {
+        padding: 1.5rem;
+    }
+
+    .stat-card {
+        padding: 1.5rem;
+    }
+
+    .stat-card .stat-value {
+        font-size: 2rem;
+    }
+
+    .dashboard-grid {
+        gap: 1.25rem;
+    }
+
+    .resource-card,
+    .notice-sidebar-card {
+        padding: 1.25rem;
+    }
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
     .sidebar {
         width: 280px;
         height: 100vh;
@@ -8,15 +42,39 @@
         left: 0;
         z-index: 1000;
         transform: translateX(-100%);
-        transition: transform 0.25s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Reset collapsed state on mobile */
+    .sidebar.collapsed {
+        width: 280px;
+    }
+
+    .sidebar.collapsed .nav-link span,
+    .sidebar.collapsed .sidebar-signout a span {
+        opacity: 1;
+        width: auto;
+    }
+
+    .sidebar.collapsed .nav-link,
+    .sidebar.collapsed .sidebar-signout a {
+        justify-content: flex-start;
+        padding: 0.75rem 1.25rem;
     }
 
     .sidebar.open {
         transform: translateX(0);
     }
 
+    .main-content {
+        width: 100%;
+        margin-left: 0;
+    }
+
     .top-navbar {
         padding: 0 1.25rem;
+        height: 70px;
     }
 
     .auth-blue-panel,
@@ -43,8 +101,30 @@
     .thumbnail-preview-box {
         height: 150px;
     }
+
+    /* Tables */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Cards in grid */
+    .row [class*="col-"] {
+        margin-bottom: 1rem;
+    }
+
+    /* Forms */
+    .form-label {
+        font-size: 0.9rem;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 0.65rem 1.25rem;
+    }
 }
 
+/* Sidebar Toggle Button */
 .sidebar-toggle-btn {
     display: none;
     width: 40px;
@@ -58,6 +138,7 @@
     font-size: 1.2rem;
     cursor: pointer;
     flex-shrink: 0;
+    transition: all 0.2s ease;
 }
 
 .sidebar-toggle-btn:hover {
@@ -85,8 +166,93 @@
     }
 }
 
-@media (max-width: 640px) {
+/* Medium Tablets and Large Phones */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 1rem;
+    }
 
+    .top-navbar {
+        height: auto;
+        min-height: 60px;
+        padding: 0.75rem 1rem;
+    }
+
+    /* Stack columns */
+    .row [class*="col-md-"],
+    .row [class*="col-lg-"] {
+        width: 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    /* Stat cards */
+    .stat-card {
+        padding: 1.25rem;
+    }
+
+    .stat-card .stat-value {
+        font-size: 1.65rem;
+    }
+
+    .stat-icon-wrapper {
+        width: 48px;
+        height: 48px;
+    }
+
+    /* Typography */
+    h1, .h1 {
+        font-size: 1.75rem;
+    }
+
+    h2, .h2 {
+        font-size: 1.5rem;
+    }
+
+    h3, .h3 {
+        font-size: 1.25rem;
+    }
+
+    /* Auth pages */
+    .auth-split-card {
+        flex-direction: column;
+        max-width: 100%;
+    }
+
+    .auth-blue-panel {
+        min-height: 200px;
+        border-radius: var(--radius-md) var(--radius-md) 0 0;
+    }
+
+    .auth-form-panel {
+        border-radius: 0 0 var(--radius-md) var(--radius-md);
+    }
+
+    /* Tables */
+    .table {
+        font-size: 0.875rem;
+    }
+
+    .table thead th {
+        padding: 0.5rem;
+    }
+
+    .table tbody td {
+        padding: 0.5rem;
+    }
+
+    /* Modals */
+    .modal-dialog {
+        margin: 0.5rem;
+    }
+
+    .modal-body {
+        padding: 1rem;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 640px) {
     .dashboard-wrapper {
         flex-direction: column;
     }
@@ -116,14 +282,15 @@
         height: auto;
         min-height: 100vh;
         width: 100%;
+        padding: 0.75rem;
     }
 
     .top-navbar {
         height: auto;
-        min-height: 60px;
-        padding: 0.75rem 1rem;
+        min-height: 56px;
+        padding: 0.65rem 0.75rem;
         flex-wrap: wrap;
-        gap: 0.75rem;
+        gap: 0.65rem;
     }
 
     .search-input-group {
@@ -131,6 +298,11 @@
         order: 3;
     }
 
+    .search-input-group input {
+        font-size: 0.9rem;
+    }
+
+    /* Stat cards */
     .stat-card {
         padding: 1rem;
     }
@@ -145,12 +317,14 @@
         font-size: 1.05rem;
     }
 
+    /* Action buttons */
     .action-button-card {
         padding: 1rem;
         flex-direction: row;
         flex-wrap: wrap;
     }
 
+    /* Resource cards */
     .resource-card {
         padding: 1rem;
     }
@@ -160,6 +334,11 @@
         height: 32px;
     }
 
+    .resource-card h5 {
+        font-size: 1rem;
+    }
+
+    /* Notice cards */
     .notice-sidebar-card {
         padding: 1rem;
     }
@@ -168,8 +347,17 @@
         padding: 0.85rem;
     }
 
+    .notice-item-widget h6 {
+        font-size: 0.9rem;
+    }
+
+    /* Auth pages */
     .auth-logo-header {
         padding: 1rem;
+    }
+
+    .auth-logo-header img {
+        max-width: 120px;
     }
 
     .auth-split-card {
@@ -181,6 +369,11 @@
         padding: 2rem 1.5rem;
         text-align: center;
         align-items: center;
+        min-height: 180px;
+    }
+
+    .auth-blue-panel h2 {
+        font-size: 1.35rem;
     }
 
     .auth-form-panel {
@@ -191,9 +384,11 @@
         width: 100%;
     }
 
+    /* Stepper */
     .stepper-container {
         gap: 0.5rem;
         flex-wrap: wrap;
+        justify-content: center;
     }
 
     .step-circle {
@@ -207,6 +402,11 @@
         margin-bottom: 15px;
     }
 
+    .step-label {
+        font-size: 0.8rem;
+    }
+
+    /* Account type cards */
     .account-type-card {
         padding: 1rem;
     }
@@ -215,6 +415,11 @@
         font-size: 1.25rem;
     }
 
+    .account-type-card h5 {
+        font-size: 1rem;
+    }
+
+    /* Upload zone */
     .drag-drop-zone {
         padding: 2rem 1rem;
     }
@@ -227,14 +432,173 @@
         height: 120px;
     }
 
+    /* Badges */
     .required-badge {
         font-size: 0.6rem;
     }
+
+    /* Buttons */
+    .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .btn-sm {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8rem;
+    }
+
+    /* Forms */
+    .form-control,
+    .form-select {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.75rem;
+    }
+
+    .form-label {
+        font-size: 0.875rem;
+    }
+
+    /* Typography */
+    h1, .h1 {
+        font-size: 1.5rem;
+    }
+
+    h2, .h2 {
+        font-size: 1.35rem;
+    }
+
+    h3, .h3 {
+        font-size: 1.15rem;
+    }
+
+    h4, .h4 {
+        font-size: 1rem;
+    }
+
+    /* Cards */
+    .card {
+        margin-bottom: 0.75rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    /* Badges */
+    .badge {
+        font-size: 0.7rem;
+        padding: 0.35rem 0.6rem;
+    }
 }
 
-@media (max-width: 380px) {
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+    .main-content {
+        padding: 0.65rem;
+    }
+
+    .top-navbar {
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .sidebar-toggle-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+    }
+
+    .stat-card {
+        padding: 0.85rem;
+    }
+
     .stat-card .stat-value {
         font-size: 1.35rem;
+    }
+
+    .stat-card .stat-label {
+        font-size: 0.8rem;
+    }
+
+    .stat-icon-wrapper {
+        width: 36px;
+        height: 36px;
+        font-size: 0.95rem;
+    }
+
+    .resource-card,
+    .notice-sidebar-card {
+        padding: 0.85rem;
+    }
+
+    .auth-blue-panel,
+    .auth-form-panel {
+        padding: 1.5rem 1rem;
+    }
+
+    .btn {
+        padding: 0.55rem 0.85rem;
+        font-size: 0.85rem;
+    }
+
+    h1, .h1 {
+        font-size: 1.35rem;
+    }
+
+    h2, .h2 {
+        font-size: 1.2rem;
+    }
+
+    h3, .h3 {
+        font-size: 1.05rem;
+    }
+
+    .card-body {
+        padding: 0.85rem;
+    }
+
+    /* Reduce spacing */
+    .mb-4 {
+        margin-bottom: 1rem !important;
+    }
+
+    .mb-3 {
+        margin-bottom: 0.75rem !important;
+    }
+
+    .py-4 {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+
+    .gap-3 {
+        gap: 0.75rem !important;
+    }
+}
+
+/* Extra Small Devices */
+@media (max-width: 380px) {
+    .main-content {
+        padding: 0.5rem;
+    }
+
+    .stat-card {
+        padding: 0.75rem;
+    }
+
+    .stat-card .stat-value {
+        font-size: 1.25rem;
+    }
+
+    .stat-card .stat-label {
+        font-size: 0.75rem;
+    }
+
+    .stat-icon-wrapper {
+        width: 32px;
+        height: 32px;
+        font-size: 0.85rem;
     }
 
     .step-line {
@@ -243,6 +607,283 @@
 
     .auth-blue-panel,
     .auth-form-panel {
-        padding: 1.5rem 1rem;
+        padding: 1.25rem 0.75rem;
+    }
+
+    .auth-logo-header img {
+        max-width: 100px;
+    }
+
+    .btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8rem;
+    }
+
+    h1, .h1 {
+        font-size: 1.25rem;
+    }
+
+    h2, .h2 {
+        font-size: 1.1rem;
+    }
+
+    h3, .h3 {
+        font-size: 1rem;
+    }
+
+    .resource-card,
+    .notice-sidebar-card,
+    .card-body {
+        padding: 0.75rem;
+    }
+
+    .form-control,
+    .form-select {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.65rem;
+    }
+
+    /* Reduce all margins */
+    .mb-4 {
+        margin-bottom: 0.85rem !important;
+    }
+
+    .mb-3 {
+        margin-bottom: 0.65rem !important;
+    }
+
+    .py-4 {
+        padding-top: 0.85rem !important;
+        padding-bottom: 0.85rem !important;
+    }
+
+    .gap-3 {
+        gap: 0.65rem !important;
+    }
+
+    .gap-2 {
+        gap: 0.5rem !important;
+    }
+}
+
+/* Landscape Mode for Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .sidebar {
+        overflow-y: auto;
+    }
+
+    .auth-blue-panel {
+        min-height: auto;
+        padding: 1.5rem;
+    }
+
+    .main-content {
+        overflow-y: auto;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .sidebar,
+    .top-navbar,
+    .sidebar-toggle-btn,
+    .sidebar-overlay,
+    .btn,
+    button {
+        display: none !important;
+    }
+
+    .main-content {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    body {
+        background: white;
+    }
+}
+
+/* High DPI Screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .stat-icon-wrapper,
+    .resource-icon,
+    .sidebar .nav-link i {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Reduced Motion for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .sidebar {
+        transition: none !important;
+    }
+
+    .sidebar-overlay {
+        transition: none !important;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* Increase touch target sizes */
+    .btn,
+    .nav-link,
+    .form-control,
+    button,
+    a {
+        min-height: 44px;
+    }
+
+    .sidebar .nav-link {
+        padding: 1rem 1.25rem;
+    }
+
+    /* Prevent text selection on buttons/links */
+    .btn,
+    .nav-link,
+    button {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+}
+
+/* Container Query Support (Future-proof) */
+@supports (container-type: inline-size) {
+    .dashboard-wrapper {
+        container-type: inline-size;
+        container-name: dashboard;
+    }
+}
+
+/* Responsive Utility Classes */
+.hide-mobile {
+    display: block;
+}
+
+.show-mobile {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    .hide-mobile {
+        display: none !important;
+    }
+
+    .show-mobile {
+        display: block !important;
+    }
+}
+
+/* Responsive Text Alignment */
+@media (max-width: 640px) {
+    .text-md-start {
+        text-align: center !important;
+    }
+
+    .text-md-end {
+        text-align: center !important;
+    }
+}
+
+/* Flexible Images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsive Iframe */
+iframe {
+    max-width: 100%;
+}
+
+/* Responsive Video */
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Shared layout safeguards: prevent flex and grid children from forcing a
+   horizontal scrollbar when a dashboard is viewed on a narrow screen. */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: clip;
+}
+
+.dashboard-wrapper,
+.main-content,
+.main-content > *,
+.row > * {
+    min-width: 0;
+}
+
+.top-navbar .container-fluid {
+    min-width: 0;
+    gap: 0.75rem;
+}
+
+@media (max-width: 1024px) {
+    .main-content {
+        height: auto;
+        min-height: 100vh;
+        min-height: calc(var(--vh, 1vh) * 100);
+    }
+
+    .sidebar {
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+}
+
+@media (max-width: 640px) {
+    .top-navbar .container-fluid {
+        flex-wrap: wrap;
+    }
+
+    .top-navbar .navbar-brand,
+    .top-navbar .fs-5 {
+        font-size: 1rem !important;
+    }
+
+    .top-navbar .btn,
+    .top-navbar .dropdown-toggle {
+        white-space: nowrap;
+    }
+
+    .table-responsive {
+        margin-inline: -0.25rem;
+        padding-inline: 0.25rem;
+    }
+
+    .table-responsive > .table {
+        min-width: 620px;
+    }
+
+    .modal-dialog {
+        max-width: none;
     }
 }

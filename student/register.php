@@ -1,3 +1,18 @@
+<?php
+// student/register.php
+declare(strict_types=1);
+
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/functions.php';
+
+if (session_status() === PHP_SESSION_NONE) session_start();
+
+if (isStudentLoggedIn()) {
+    redirect('dashboard.php');
+}
+
+$csrf = generateCsrfToken();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,17 +33,19 @@
 
     
     <header class="auth-logo-header d-flex justify-content-between align-items-center shadow-sm">
-        <a href="../index.html" class="d-flex align-items-center gap-2 text-decoration-none">
+        <a href="../index.php" class="d-flex align-items-center gap-2 text-decoration-none">
             <div class="bg-primary text-white rounded-3 p-1.5 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
                 <i class="bi bi-mortarboard-fill fs-4"></i>
             </div>
             <span class="fs-4 fw-bold text-primary" style="letter-spacing: -0.5px;">Uni Hub</span>
         </a>
         <div class="d-flex gap-2">
-            <a href="login.html" class="btn btn-light px-4 fw-semibold border" style="border-radius: 6px; background-color: #f3f4f6;">Sign In</a>
-            <a href="register.html" class="btn btn-primary px-4 fw-semibold" style="border-radius: 6px;">Register</a>
+            <a href="../admin/login.php" class="btn btn-outline-primary btn-sm rounded-pill px-3 py-1.5 fw-semibold"><i class="bi bi-shield-lock me-1"></i> Admin Portal</a>
+            <a href="../index.php" class="btn btn-light btn-sm rounded-pill px-3 py-1.5 fw-semibold border"><i class="bi bi-house-door me-1"></i> Homepage</a>
         </div>
     </header>
+
+    <?php renderFlash(); ?>
 
     
     <div class="container mt-5">
@@ -53,29 +70,9 @@
                 <p class="text-muted small">Join your universities collaborative network today</p>
             </div>
 
-            <form action="dashboard.html" method="GET">
+            <form id="registerForm" action="../actions/student/register.php" method="POST">
+                <?= csrfField() ?>
                
-                <div class="mb-4">
-                    <label class="form-label small fw-bold text-muted text-uppercase" style="letter-spacing: 0.5px;">Account Type</label>
-                    <div class="row g-3">
-                        <div class="col-6">
-                            <div class="account-type-card active">
-                                <i class="bi bi-person-badge fs-3 mb-2 d-block"></i>
-                                <span class="fw-bold text-dark small d-block">Student</span>
-                                <span class="text-muted" style="font-size: 0.65rem; display: block; line-height: 1.2; margin-top: 2px;">Access courses and learning materials</span>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="account-type-card">
-                                <i class="bi bi-mortarboard fs-3 mb-2 d-block text-muted"></i>
-                                <span class="fw-bold text-dark small d-block">Faculty</span>
-                                <span class="text-muted" style="font-size: 0.65rem; display: block; line-height: 1.2; margin-top: 2px;">Manage Courses & Publish Content</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                
                 <div class="mb-4">
                     <h5 class="fw-bold text-dark border-bottom pb-2 d-flex align-items-center gap-2" style="font-size: 1.05rem;">
                         <i class="bi bi-person-fill text-primary"></i> Personal Details
@@ -83,11 +80,11 @@
                     <div class="row g-3 mb-3">
                         <div class="col-6">
                             <label for="regFirst" class="form-label small fw-semibold text-dark mb-1">First Name :</label>
-                            <input type="text" class="form-control bg-light border-0 py-2" id="regFirst" placeholder="Alwis" required style="border-radius: 6px;">
+                            <input type="text" class="form-control bg-light border-0 py-2" id="regFirst" name="first_name" placeholder="Alwis" required style="border-radius: 6px;">
                         </div>
                         <div class="col-6">
                             <label for="regLast" class="form-label small fw-semibold text-dark mb-1">Last Name :</label>
-                            <input type="text" class="form-control bg-light border-0 py-2" id="regLast" placeholder="Perera" required style="border-radius: 6px;">
+                            <input type="text" class="form-control bg-light border-0 py-2" id="regLast" name="last_name" placeholder="Perera" required style="border-radius: 6px;">
                         </div>
                     </div>
                     
@@ -96,7 +93,7 @@
                             <label for="regEmail" class="form-label small fw-semibold text-dark mb-0">University Email :</label>
                             <span class="required-badge">REQUIRED</span>
                         </div>
-                        <input type="email" class="form-control bg-light border-0 py-2" id="regEmail" placeholder="itt2024001@tec.rjt.ac.lk" pattern="[a-zA-Z0-9._%+-]+@tec\.rjt\.ac\.lk" title="Please enter a valid university email ending with @tec.rjt.ac.lk" required style="border-radius: 6px;">
+                        <input type="email" class="form-control bg-light border-0 py-2" id="regEmail" name="email" placeholder="itt2024001@tec.rjt.ac.lk" pattern="[a-zA-Z0-9._%+-]+@tec\.rjt\.ac\.lk" title="Please enter a valid university email ending with @tec.rjt.ac.lk" required style="border-radius: 6px;">
                         <span class="form-text small text-muted" style="font-size: 0.7rem;">Must end with @tec.rjt.ac.lk or authorized domain</span>
                     </div>
 
@@ -104,7 +101,7 @@
                         <label for="regID" class="form-label small fw-semibold text-dark mb-1">Student ID Number</label>
                         <div class="input-group" style="border-radius: 6px; overflow: hidden;">
                             <span class="input-group-text bg-light border-0"><i class="bi bi-card-text text-muted"></i></span>
-                            <input type="text" class="form-control bg-light border-0 py-2" id="regID" placeholder="ITT/2024/001" required>
+                            <input type="text" class="form-control bg-light border-0 py-2" id="regID" name="student_id" placeholder="ITT/2024/001" required>
                         </div>
                     </div>
                 </div>
@@ -119,32 +116,20 @@
                             <label for="regPass" class="form-label small fw-semibold text-dark mb-1">Password :</label>
                             <div class="input-group" style="border-radius: 6px; overflow: hidden;">
                                 <span class="input-group-text bg-light border-0"><i class="bi bi-lock-fill text-muted"></i></span>
-                                <input type="password" class="form-control bg-light border-0 py-2" id="regPass" placeholder="********" required>
+                                <input type="password" class="form-control bg-light border-0 py-2" id="regPass" name="password" placeholder="********" required>
                             </div>
                         </div>
                         <div class="col-6">
                             <label for="regConfirm" class="form-label small fw-semibold text-dark mb-1">Confirm Password :</label>
                             <div class="input-group" style="border-radius: 6px; overflow: hidden;">
                                 <span class="input-group-text bg-light border-0"><i class="bi bi-lock-fill text-muted"></i></span>
-                                <input type="password" class="form-control bg-light border-0 py-2" id="regConfirm" placeholder="********" required>
+                                <input type="password" class="form-control bg-light border-0 py-2" id="regConfirm" name="confirm_password" placeholder="********" required>
                             </div>
                         </div>
                     </div>
                 </div>
 
                
-                <div class="mb-4 p-3 bg-light border rounded-3 d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center gap-3">
-                        <input type="checkbox" class="form-check-input" id="captchaCheck" required style="width: 24px; height: 24px;">
-                        <label class="form-check-label fw-semibold text-dark mb-0" for="captchaCheck" style="font-size: 0.9rem;">I am not a robot</label>
-                    </div>
-                    <div class="text-center">
-                        <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA logo" style="width: 30px; height: 30px;">
-                        <span class="d-block text-muted" style="font-size: 0.55rem; line-height: 1;">reCAPTCHA</span>
-                    </div>
-                </div>
-
-                
                 <div class="mb-4 form-check">
                     <input type="checkbox" class="form-check-input" id="termsCheck" required style="border-radius: 4px;">
                     <label class="form-check-label small text-muted fw-semibold" for="termsCheck" style="line-height: 1.4;">
@@ -154,13 +139,20 @@
 
                 
                 <button type="submit" class="btn btn-primary w-100 py-2.5 fw-bold d-flex align-items-center justify-content-center gap-2 mb-4" style="border-radius: 6px;">
-                    Continue to Verification <i class="bi bi-arrow-right"></i>
+                    Create Account <i class="bi bi-arrow-right"></i>
                 </button>
 
                
-                <div class="text-center small">
+                <div class="text-center small mb-3">
                     <span class="text-muted fw-semibold">Already have an account? </span>
-                    <a href="login.html" class="text-decoration-none fw-bold" style="color: #2563eb;">Sign In</a>
+                    <a href="login.php" class="text-decoration-none fw-bold" style="color: #2563eb;">Sign In</a>
+                </div>
+
+                <hr class="my-3 border-slate-200">
+
+                <div class="d-flex justify-content-between align-items-center pt-1" style="font-size: 0.78rem;">
+                    <a href="../admin/login.php" class="text-muted text-decoration-none fw-semibold"><i class="bi bi-shield-lock me-1 text-primary"></i> Admin Portal</a>
+                    <a href="../index.php" class="text-muted text-decoration-none fw-semibold"><i class="bi bi-house-door me-1 text-primary"></i> Homepage</a>
                 </div>
             </form>
         </div>
@@ -173,5 +165,6 @@
 
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/script.js"></script>
 </body>
 </html>

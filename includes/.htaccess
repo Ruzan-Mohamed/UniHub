@@ -1,0 +1,3 @@
+# Deny direct web access to includes/ - only PHP files can require them
+Order deny,allow
+Deny from all

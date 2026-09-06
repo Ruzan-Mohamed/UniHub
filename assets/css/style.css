@@ -57,7 +57,73 @@ body {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+/* Collapsible Sidebar States */
+.sidebar.collapsed {
+    width: 80px;
+}
+
+.sidebar.collapsed .nav-link span,
+.sidebar.collapsed .sidebar-signout a span,
+.sidebar.collapsed .sidebar-header-text {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.sidebar.collapsed .nav-link {
+    justify-content: center;
+    padding: 0.75rem;
+}
+
+.sidebar.collapsed .sidebar-signout a {
+    justify-content: center;
+    padding: 0.75rem;
+}
+
+/* Sidebar Collapse Toggle Button */
+.sidebar-collapse-toggle {
+    position: absolute;
+    top: 20px;
+    right: -12px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--primary-color);
+    border: 2px solid var(--bg-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    font-size: 0.7rem;
     transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-collapse-toggle:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.1);
+}
+
+.sidebar.collapsed .sidebar-collapse-toggle i {
+    transform: rotate(180deg);
+}
+
+.sidebar-collapse-toggle i {
+    transition: transform 0.3s ease;
+}
+
+/* Hide collapse button on mobile */
+@media (max-width: 1024px) {
+    .sidebar-collapse-toggle {
+        display: none;
+    }
 }
 
 .sidebar .nav-link {
@@ -70,10 +136,17 @@ body {
     gap: 12px;
     font-weight: 500;
     transition: all 0.2s ease;
+    white-space: nowrap;
+    position: relative;
 }
 
 .sidebar .nav-link i {
     font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.sidebar .nav-link span {
+    transition: opacity 0.3s ease, width 0.3s ease;
 }
 
 .sidebar .nav-link:hover {
@@ -86,9 +159,34 @@ body {
     background-color: #f1f5f9;
 }
 
+/* Tooltip for collapsed sidebar */
+.sidebar.collapsed .nav-link::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 10px;
+    padding: 6px 12px;
+    background-color: var(--accent-dark);
+    color: white;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 1000;
+}
+
+.sidebar.collapsed .nav-link:hover::after {
+    opacity: 1;
+}
+
 .sidebar-signout {
     border-top: 1px solid var(--border-color);
     padding: 1.25rem 1rem;
+    margin-top: auto;
 }
 
 .sidebar-signout a {
@@ -101,10 +199,34 @@ body {
     gap: 12px;
     border-radius: var(--radius-md);
     transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.sidebar-signout a i {
+    flex-shrink: 0;
+}
+
+.sidebar-signout a span {
+    transition: opacity 0.3s ease, width 0.3s ease;
 }
 
 .sidebar-signout a:hover {
     background-color: #fef2f2;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-header-text {
+    transition: opacity 0.3s ease, width 0.3s ease;
+}
+
+.sidebar.collapsed .sidebar-header {
+    padding: 1rem 0.5rem;
+    text-align: center;
 }
 
 /* Main Dashboard */

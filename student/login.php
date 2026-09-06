@@ -1,3 +1,19 @@
+<?php
+// student/login.php
+declare(strict_types=1);
+
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/functions.php';
+
+if (session_status() === PHP_SESSION_NONE) session_start();
+
+// Already logged in → redirect to dashboard
+if (isStudentLoggedIn()) {
+    redirect('dashboard.php');
+}
+
+$csrf = generateCsrfToken();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,19 +34,20 @@
 
    
     <header class="auth-logo-header d-flex justify-content-between align-items-center shadow-sm">
-        <a href="../index.html" class="d-flex align-items-center gap-2 text-decoration-none">
+        <a href="../index.php" class="d-flex align-items-center gap-2 text-decoration-none">
             <div class="bg-primary text-white rounded-3 p-1.5 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
                 <i class="bi bi-mortarboard-fill fs-4"></i>
             </div>
             <span class="fs-4 fw-bold text-primary" style="letter-spacing: -0.5px;">Uni Hub</span>
         </a>
         <div class="d-flex gap-2">
-            <a href="login.html" class="btn btn-primary px-4 fw-semibold" style="border-radius: 6px;">Sign In</a>
-            <a href="register.html" class="btn btn-light px-4 fw-semibold border" style="border-radius: 6px; background-color: #f3f4f6;">Register</a>
+            <a href="../admin/login.php" class="btn btn-outline-primary btn-sm rounded-pill px-3 py-1.5 fw-semibold"><i class="bi bi-shield-lock me-1"></i> Admin Portal</a>
+            <a href="../index.php" class="btn btn-light btn-sm rounded-pill px-3 py-1.5 fw-semibold border"><i class="bi bi-house-door me-1"></i> Homepage</a>
         </div>
     </header>
 
-    
+    <?php renderFlash(); ?>
+
     <main class="flex-grow-1 d-flex align-items-center justify-content-center p-3 my-4">
         <div class="auth-split-card d-flex flex-column flex-lg-row">
 
@@ -63,11 +80,12 @@
                 <h2 class="fw-bold text-dark mb-1" style="font-size: 1.75rem;">Welcome Back !</h2>
                 <p class="text-muted small mb-4">Enter your credentials to access your dashboard</p>
 
-                <form action="dashboard.html" method="GET">
+                <form id="studentLoginForm" action="../actions/student/login.php" method="POST">
+                    <?= csrfField() ?>
                     
                     <div class="mb-3">
                         <label for="loginEmail" class="form-label small fw-semibold text-dark">University Email :</label>
-                        <input type="email" class="form-control bg-light border-0 py-2.5 px-3" id="loginEmail" placeholder="itt2024001@tec.rjt.ac.lk" required style="border-radius: 6px;">
+                        <input type="email" class="form-control bg-light border-0 py-2.5 px-3" id="loginEmail" name="email" placeholder="itt2024001@tec.rjt.ac.lk" required style="border-radius: 6px;">
                     </div>
 
                     
@@ -76,12 +94,12 @@
                             <label for="loginPassword" class="form-label small fw-semibold text-dark mb-0">Password :</label>
                             <a href="#" class="small text-decoration-none fw-semibold" style="color: #2563eb;">Forgot Password</a>
                         </div>
-                        <input type="password" class="form-control bg-light border-0 py-2.5 px-3" id="loginPassword" placeholder="********" required style="border-radius: 6px;">
+                        <input type="password" class="form-control bg-light border-0 py-2.5 px-3" id="loginPassword" name="password" placeholder="********" required style="border-radius: 6px;">
                     </div>
 
                     
                     <div class="mb-4 form-check">
-                        <input type="checkbox" class="form-check-input" id="rememberCheck" style="border-radius: 4px;">
+                        <input type="checkbox" class="form-check-input" id="rememberCheck" name="remember" style="border-radius: 4px;">
                         <label class="form-check-label small text-dark fw-medium" for="rememberCheck">Remember me for 30 days</label>
                     </div>
 
@@ -91,24 +109,16 @@
                     </button>
 
                     
-                    <div class="d-flex align-items-center my-4">
-                        <hr class="flex-grow-1 border-slate-300">
-                        <span class="mx-3 text-muted small fw-semibold" style="font-size: 0.75rem; letter-spacing: 0.5px;">OR CONTINUE WITH</span>
-                        <hr class="flex-grow-1 border-slate-300">
+                    <div class="text-center small mb-3">
+                        <span class="text-muted fw-semibold">Don't have an account? </span>
+                        <a href="register.php" class="text-decoration-none fw-bold" style="color: #2563eb;">Create an account</a>
                     </div>
 
-                    
-                    <button type="button" class="btn auth-btn-google w-100 py-2.5 d-flex align-items-center justify-content-center gap-2 mb-4" style="border-radius: 6px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google text-danger" viewBox="0 0 16 16">
-                            <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063c.632 1.896 2.405 3.304 4.492 3.304 1.108 0 2.04-.294 2.721-.801a2.892 2.892 0 0 0 1.098-1.921H8v-3.024h7.545z"/>
-                        </svg>
-                        Google
-                    </button>
+                    <hr class="my-3 border-slate-200">
 
-
-                    <div class="text-center small">
-                        <span class="text-muted fw-semibold">Don't have an account? </span>
-                        <a href="register.html" class="text-decoration-none fw-bold" style="color: #2563eb;">Create an account</a>
+                    <div class="d-flex justify-content-between align-items-center pt-1" style="font-size: 0.78rem;">
+                        <a href="../admin/login.php" class="text-muted text-decoration-none fw-semibold"><i class="bi bi-shield-lock me-1 text-primary"></i> Admin Portal</a>
+                        <a href="../index.php" class="text-muted text-decoration-none fw-semibold"><i class="bi bi-house-door me-1 text-primary"></i> Homepage</a>
                     </div>
                 </form>
             </div>
@@ -122,5 +132,6 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/script.js"></script>
 </body>
 </html>

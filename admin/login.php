@@ -1,3 +1,18 @@
+<?php
+// admin/login.php
+declare(strict_types=1);
+
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/functions.php';
+
+if (session_status() === PHP_SESSION_NONE) session_start();
+
+if (isAdminLoggedIn()) {
+    redirect('dashboard.php');
+}
+
+$csrf = generateCsrfToken();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +31,8 @@
 </head>
 <body class="bg-light d-flex align-items-center justify-content-center" style="min-height: 100vh;">
 
+    <?php renderFlash(); ?>
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-5">
@@ -26,17 +43,18 @@
                             <i class="bi bi-shield-lock-fill fs-3"></i>
                         </div>
                         <h3 class="fw-bold text-dark mb-1">UniHub Admin Portal</h3>
-                        <p class="text-muted small">Authorized Administrative & Academic Staff Access Only</p>
+                        <p class="text-muted small">Authorized Administrative &amp; Academic Staff Access Only</p>
                     </div>
 
                     <hr class="my-4">
 
-                    <form action="dashboard.html" method="GET" class="text-start">
+                    <form id="adminLoginForm" action="../actions/admin/login.php" method="POST" class="text-start">
+                        <?= csrfField() ?>
                         <div class="mb-3">
                             <label for="adminEmail" class="form-label small fw-semibold">Staff Identity / Email</label>
                             <div class="input-group">
                                 <span class="input-group-text bg-light border-end-0"><i class="bi bi-person-badge text-muted"></i></span>
-                                <input type="email" class="form-control bg-light border-start-0 ps-0" id="adminEmail" placeholder="staff@rjt.ac.lk" required>
+                                <input type="email" class="form-control bg-light border-start-0 ps-0" id="adminEmail" name="email" placeholder="staff@rjt.ac.lk" required>
                             </div>
                         </div>
 
@@ -44,9 +62,9 @@
                             <label for="adminRole" class="form-label small fw-semibold">Access Level Role</label>
                             <div class="input-group">
                                 <span class="input-group-text bg-light border-end-0"><i class="bi bi-sliders text-muted"></i></span>
-                                <select class="form-select bg-light border-start-0 ps-0" id="adminRole" required>
-                                    <option value="Admin" selected>System Administrator</option>
-                                    <option value="Staff">Academic Staff / Registrar</option>
+                                <select class="form-select bg-light border-start-0 ps-0" id="adminRole" name="role" required>
+                                    <option value="admin" selected>System Administrator</option>
+                                    <option value="staff">Academic Staff / Registrar</option>
                                 </select>
                             </div>
                         </div>
@@ -55,7 +73,7 @@
                             <label for="adminPassword" class="form-label small fw-semibold">Security Password</label>
                             <div class="input-group">
                                 <span class="input-group-text bg-light border-end-0"><i class="bi bi-key text-muted"></i></span>
-                                <input type="password" class="form-control bg-light border-start-0 ps-0" id="adminPassword" placeholder="Enter secure key" required>
+                                <input type="password" class="form-control bg-light border-start-0 ps-0" id="adminPassword" name="password" placeholder="Enter secure key" required>
                             </div>
                         </div>
 
@@ -65,10 +83,10 @@
                     </form>
 
                     <div class="mt-4 pt-3 border-top text-center d-flex justify-content-around">
-                        <a href="../student/login.html" class="text-decoration-none small text-muted">
+                        <a href="../student/login.php" class="text-decoration-none small text-muted">
                             <i class="bi bi-arrow-left me-1"></i> Return to Student Portal
                         </a>
-                        <a href="../index.html" class="text-decoration-none small text-muted">
+                        <a href="../index.php" class="text-decoration-none small text-muted">
                             <i class="bi bi-house-door me-1"></i> Return to Homepage
                         </a>
                     </div>
@@ -79,5 +97,6 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/script.js?v=<?= time() ?>"></script>
 </body>
 </html>
