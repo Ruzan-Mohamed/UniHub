@@ -1,5 +1,0 @@
-# Uploads Directory
-# This directory stores student-uploaded resource files.
-# Subdirectories will be created automatically by upload_resource.php
-
-# .htaccess to prevent PHP execution in this directory
